@@ -1,0 +1,12 @@
+package com.bercut.koroleva_anglii;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class KorolevaAngliiApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(KorolevaAngliiApplication.class, args);
+	}
+
+}
