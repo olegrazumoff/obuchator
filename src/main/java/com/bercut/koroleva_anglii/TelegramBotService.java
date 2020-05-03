@@ -4,8 +4,6 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.MessageEntity;
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.model.request.ForceReply;
-import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.GetUpdates;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.GetUpdatesResponse;
@@ -26,6 +24,12 @@ public class TelegramBotService {
 
     private TelegramBot telegramBot;
     private GetUpdates getUpdates;
+
+    private final ModelExecutor modelExecutor;
+
+    public TelegramBotService(ModelExecutor modelExecutor) {
+        this.modelExecutor = modelExecutor;
+    }
 
     @PostConstruct
     public void initBot() {
@@ -50,7 +54,8 @@ public class TelegramBotService {
                         if (update.message().text().equalsIgnoreCase("как дела?")) {
                             sendMessage(update.message().chat().id(), "Какие дела?");
                         } else {
-                            sendMessage(update.message().chat().id(), "Принято: " + text);
+                            String answer = modelExecutor.handleMessage(update.message().from().username(), text);
+                            sendMessage(update.message().chat().id(), answer);
                         }
                     }
                 }
