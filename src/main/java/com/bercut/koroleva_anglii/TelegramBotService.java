@@ -2,6 +2,7 @@ package com.bercut.koroleva_anglii;
 
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
+import com.pengrad.telegrambot.model.MessageEntity;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.model.request.ParseMode;
@@ -20,6 +21,8 @@ import java.util.List;
 public class TelegramBotService {
 
     private static final String BOT_TOKEN = "1110407913:AAFEMnRMRxpoyB3ZOXjcLEGeV0-CgacAuS4";
+    private static final String BOT_NAME = "@koroleva_anglii_bot";
+    private static final String BOT_LOGIN = "Королева Англии";
 
     private TelegramBot telegramBot;
     private GetUpdates getUpdates;
@@ -36,14 +39,22 @@ public class TelegramBotService {
         List<Update> updates = updatesResponse.updates();
         System.out.println(String.format("%s: Polled %d updates", LocalDateTime.now(), updates.size()));
         for (Update update : updates) {
-            System.out.println(update.message().text());
-            if (update.message().text().equalsIgnoreCase("как дела?")) {
-                sendMessage(update.message().chat().id(), "Какие дела?");
-            } else {
-                sendMessage(update.message().chat().id(), "Принято: " + update.message().text());
-            }
             getUpdates.offset(update.updateId() + 1);
-
+            if (update.message() != null) {
+                MessageEntity[] entities = update.message().entities();
+                if (entities != null && entities.length == 1 && entities[0].type() == MessageEntity.Type.mention) {
+                    String text = update.message().text();
+                    if (text != null && text.contains(BOT_NAME)) {
+                        text = text.replace(BOT_LOGIN, BOT_NAME);
+                        System.out.println(update.message().from().firstName() + ": " + text);
+                        if (update.message().text().equalsIgnoreCase("как дела?")) {
+                            sendMessage(update.message().chat().id(), "Какие дела?");
+                        } else {
+                            sendMessage(update.message().chat().id(), "Принято: " + text);
+                        }
+                    }
+                }
+            }
         }
     }
 
