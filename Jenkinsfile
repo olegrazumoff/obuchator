@@ -18,7 +18,7 @@ def appDataPath = '~/app'
 node(params.nodeName) {
     try {
 
-        Global.reportEmail = ''
+        Global.reportEmail = 'test@test.ru'
         Global.init(this)
 
         stage('Start') {
