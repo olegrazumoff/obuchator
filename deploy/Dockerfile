@@ -2,7 +2,7 @@ FROM dockerregistry:5000/base:latest
 
 ARG WORKDIR=/opt
 WORKDIR ${WORKDIR}
-COPY . .
+COPY .. .
 ENV PATH="${WORKDIR}:${PATH}"
 RUN chmod +x gradlew.sh
 RUN gradlew.sh bootJar
