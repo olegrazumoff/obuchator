@@ -1,6 +1,4 @@
 #!groovy
-package env.dev
-
 @org.jenkinsci.plugins.workflow.libs.Library('bercut')
 //@oleg
 import test.*
