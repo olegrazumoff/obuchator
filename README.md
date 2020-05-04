@@ -2,8 +2,8 @@
 
 _graph_model/_ содержит тестовые модели квестов в формате JSON
 
-собрать jar
+собрать jar  
 gradlew bootJar
 
-запустить jar
+запустить jar  
 java -jar /path/to/jar
