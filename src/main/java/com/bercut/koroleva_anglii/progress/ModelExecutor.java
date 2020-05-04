@@ -1,5 +1,6 @@
-package com.bercut.koroleva_anglii;
+package com.bercut.koroleva_anglii.progress;
 
+import com.bercut.koroleva_anglii.model.Model;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

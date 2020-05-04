@@ -1,231 +1,438 @@
 {
-	"graph": {
-		"id": "someId",
-		"type": "bot graph",
-		"label": "Курс таблицы умножения",
-		"metadata": {
-			"textGroups": [
-				{
-				"congrats": 
-                    [
-                        {"text":"молодечик"}
-                        ,{"text":"лови пятюню"}
-                        ,{"text":"класс"}
-                        ,{"text":"всё так"}
-                        ,{"text":"верно"}
-                    ]
-                }
-				,{"looser": 
-                    [
-                        {"text":"ну ты"}
-                        ,{"text":"давай думай"}
-                        ,{"text":"подумай ещё"}
-                        ,{"text":"неверно"}
-                        ,{"text":"неа"}
-                    ]
-				}
-				,{"exitAnswers": 
-                    [
-                        {"text":"хватит"}
-                        ,{"text":"выйти"}
-                        ,{"text":"закончить"}
-                        ,{"text":"завершить"}
-                        ,{"text":"выход"}
-                    ]
-				}
-				,{"continueAnswers": 
-                    [
-                        {"text":"продолжить"}
-                        ,{"text":"давай"}
-                        ,{"text":"да"}
-                        ,{"text":"войти"}
-                        ,{"text":"вход"}
-                    ]
-				}
-			],
-			"questionGroups": [
-				{
-                "groupX1": 
-                    [
-                        {"text":"1x2", "anwser":"2", "points":1}
-                        ,{"text":"1x3", "anwser":"3", "points":1}
-                        ,{"text":"1x4", "anwser":"4", "points":1}
-                        ,{"text":"1x5", "anwser":"5", "points":1}
-                        ,{"text":"1x6", "anwser":"6", "points":1}
-                        ,{"text":"1x7", "anwser":"7", "points":1}
-                        ,{"text":"1x8", "anwser":"8", "points":1}
-                        ,{"text":"1x9", "anwser":"9", "points":1}
-                        ,{"text":"1x10", "anwser":"10", "points":1}
-                    ]
-                }
-				,{"groupX2": 
-                    [
-                        {"text":"дважды два", "anwser":"4", "points":1}
-                        ,{"text":"2x3", "anwser":"6", "points":1}
-                        ,{"text":"2x4", "anwser":"8", "points":1}
-                        ,{"text":"2x5", "anwser":"10", "points":1}
-                        ,{"text":"2x6", "anwser":"12", "points":2}
-                        ,{"text":"2x7", "anwser":"14", "points":2}
-                        ,{"text":"2x8", "anwser":"16", "points":2}
-                        ,{"text":"2x9", "anwser":"18", "points":2}
-                        ,{"text":"2x10", "anwser":"20", "points":1}
-                    ]
-                }
-                ,{"groupX2_task": 
-                    [
-                        {"text":"2x что-то = 4", "anwser":"2", "points":1}
-                        ,{"text":"2x что-то = 6", "anwser":"3", "points":4}
-                        ,{"text":"2x что-то = 12", "anwser":"6", "points":4}
-                        ,{"text":"2x что-то = 14", "anwser":"7", "points":4}
-                        ,{"text":"2x что-то = 18", "anwser":"9", "points":4}
-                    ]
-                }
-				,{"groupX3": 
-                    [
-                        {"text":"трижды два", "anwser":"6|примерно шесть", "points":1}
-                        ,{"text":"3x3", "anwser":"9", "points":2}
-                        ,{"text":"3x4", "anwser":"12", "points":2}
-                        ,{"text":"3x5", "anwser":"15", "points":2}
-                        ,{"text":"3x6", "anwser":"18", "points":2}
-                        ,{"text":"3x7", "anwser":"21", "points":2}
-                        ,{"text":"3x8", "anwser":"24", "points":2}
-                        ,{"text":"3x9", "anwser":"27", "points":2}
-                        ,{"text":"3x10", "anwser":"30", "points":2}
-                    ]
-				}
-			]
-		}
-		,"nodes": {
-              
-			"welcomeNode": {
-				"label": "Приветствие",
-				"metadata": {
-					"text": "Привет, друг, ты нашёл игру, в которой тебе откроются новые тайные знания. Следуй за своим героем, победи врагов вместе с ним и получи стань ниндзя умножения!",
-                    "type":"info"
-				}
-			},
-			"prolog": {
-				"label": "Приветствие",
-				"metadata": {
-					"text": "В далёком будущем несколько кораблей искателей отправились в бесконечное путешествие, в надежде изучить планеты на краю галактики. Искатели находятся в поисках знаний, которые помогают им изучать наш мир более детально и красочно. И ты — великий последователь и истинный искатель знаний.\nВо время вашего путешествия, ваш корабль перехватывает какой-то сигнал, в которым были зашифрованы какие-то координаты: «123454321»\nВы сумели проложить маршрут и с воодушевлением направляетесь именно по полученным координатам.",
-				}
-			},
-			"sequentalQuestionsX1": {
-				"label": "Последовательные вопросы X1",
-				"metadata": {
-                    "nodeData": {
-                        "text": "Начинается наша история в подземелье номер 1...",
-                        "type": "вопросы_по_порядку",
-                        "questionGroup": "groupX1"
-                    }
-				}
-			},
-			"randomQuestionsX1": {
-				"label": "Рандомные вопросы X1",
+  "graph": {
+    "id": "someId",
+    "type": "bot graph",
+    "label": "Курс таблицы умножения",
+    "metadata": {
+      "textGroups": [
+        {
+          "congrats": [
+            {
+              "text": "молодечик"
+            },
+            {
+              "text": "лови пятюню"
+            },
+            {
+              "text": "класс"
+            },
+            {
+              "text": "всё так"
+            },
+            {
+              "text": "верно"
+            }
+          ]
+        },
+        {
+          "looser": [
+            {
+              "text": "ну ты"
+            },
+            {
+              "text": "давай думай"
+            },
+            {
+              "text": "подумай ещё"
+            },
+            {
+              "text": "неверно"
+            },
+            {
+              "text": "неа"
+            }
+          ]
+        },
+        {
+          "exitAnswers": [
+            {
+              "text": "хватит"
+            },
+            {
+              "text": "выйти"
+            },
+            {
+              "text": "закончить"
+            },
+            {
+              "text": "завершить"
+            },
+            {
+              "text": "выход"
+            }
+          ]
+        },
+        {
+          "continueAnswers": [
+            {
+              "text": "продолжить"
+            },
+            {
+              "text": "давай"
+            },
+            {
+              "text": "да"
+            },
+            {
+              "text": "войти"
+            },
+            {
+              "text": "вход"
+            }
+          ]
+        }
+      ],
+      "questionGroups": {
+        "groupX2": [
+          {
+            "text": "дважды два",
+            "answer": "4",
+            "points": 1
+          },
+          {
+            "text": "2x3",
+            "answer": "6",
+            "points": 1
+          },
+          {
+            "text": "2x4",
+            "answer": "8",
+            "points": 1
+          },
+          {
+            "text": "2x5",
+            "answer": "10",
+            "points": 1
+          },
+          {
+            "text": "2x6",
+            "answer": "12",
+            "points": 2
+          },
+          {
+            "text": "2x7",
+            "answer": "14",
+            "points": 2
+          },
+          {
+            "text": "2x8",
+            "answer": "16",
+            "points": 2
+          },
+          {
+            "text": "2x9",
+            "answer": "18",
+            "points": 2
+          },
+          {
+            "text": "2x10",
+            "answer": "20",
+            "points": 1
+          }
+        ],
+        "groupX2_task": [
+          {
+            "text": "2x что-то = 4",
+            "answer": "2",
+            "points": 1
+          },
+          {
+            "text": "2x что-то = 6",
+            "answer": "3",
+            "points": 4
+          },
+          {
+            "text": "2x что-то = 12",
+            "answer": "6",
+            "points": 4
+          },
+          {
+            "text": "2x что-то = 14",
+            "answer": "7",
+            "points": 4
+          },
+          {
+            "text": "2x что-то = 18",
+            "answer": "9",
+            "points": 4
+          }
+        ],
+        "groupX3": [
+          {
+            "text": "трижды два",
+            "answer": "6|примерно шесть",
+            "points": 1
+          },
+          {
+            "text": "3x3",
+            "answer": "9",
+            "points": 2
+          },
+          {
+            "text": "3x4",
+            "answer": "12",
+            "points": 2
+          },
+          {
+            "text": "3x5",
+            "answer": "15",
+            "points": 2
+          },
+          {
+            "text": "3x6",
+            "answer": "18",
+            "points": 2
+          },
+          {
+            "text": "3x7",
+            "answer": "21",
+            "points": 2
+          },
+          {
+            "text": "3x8",
+            "answer": "24",
+            "points": 2
+          },
+          {
+            "text": "3x9",
+            "answer": "27",
+            "points": 2
+          },
+          {
+            "text": "3x10",
+            "answer": "30",
+            "points": 2
+          }
+        ]
+      }
+    },
+    "nodes": {
+      "welcomeNode": {
+        "label": "Приветствие",
+        "metadata": {
+        "nodeData": {
+          "text": "Привет, дружок, хочешь я расскажу тебе сказку про цифры?"
+          ,"type":"continueBlock"
+          }
+        }
+      },
+      "prolog": {
+                "label": "Приветствие",
                 "metadata": {
-                    "nodeData": {
-                        "text": "Ты продвинулся на новый этап...",
-                        "type": "вопросы_в_случайном_порядке",
-                        "questionGroup": "groupX1"
+                "nodeData": {
+                    "text": "В далёком будущем несколько кораблей искателей отправились в бесконечное путешествие, в надежде изучить планеты на краю галактики. Искатели находятся в поисках знаний, которые помогают им изучать наш мир более детально и красочно. И ты — великий последователь и истинный искатель знаний.\nВо время вашего путешествия, ваш корабль перехватывает какой-то сигнал, в которым были зашифрованы какие-то координаты: «123454321»\nВы сумели проложить маршрут и с воодушевлением направляетесь именно по полученным координатам.«прошло какое-то время…»\nСпустя некоторое время после обоснования на планете, вами было обнаружено таинственное место, вход куда был запечатан до сих пор неизвестными символами.",
+                    "type":"continueBlock",
+                    "buttons":"пропустить всё|продолжить"
                     }
-				}
-			},
-			"sequentalQuestionsX2": {
-				"label": "Последовательные вопросы X1",
-				"metadata": {
-                    "nodeData": {
-                        "text": "Спускаемся в подземелье 2...",
-                        "type": "вопросы_по_порядку",
-                        "questionGroup": "groupX2"
-                    }
-				}
-			},
-			"randomQuestionsX1": {
-				"label": "Рандомные вопросы X1",
-                "metadata": {
-                    "nodeData": {
-                        "text": "Ты продвинулся на новый этап внутри 2...",
-                        "type": "вопросы_в_случайном_порядке",
-                        "questionGroup": "groupX2"
-                    }
-				}
-			},
-			"goodBye": {
-				"label": "Досвидос"
-			},
-			"correct": {
-				"label": "Ответ верный"
-			},
-			"incorrect": {
-				"label": "Ответ неверный"
-			}                    
-		},
-		"edges": 
-        [
-			{
-				"source": "welcomeNode",
-				"target": "goodBye",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "ответ=$textGroups['exitAnswers']"
-                    }
-				}
-			}
-			,{
-				"source": "welcomeNode",
-				"target": "sequentalQuestions",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "ответ=$textGroups['contitueAnswers']"
-                        ,"questionGroup": "groupX1"
-                    }
-				}
-			}
-			,{
-				"source": "sequentalQuestionsX1",
-				"target": "goodBye",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "ответ=$textGroups['exitAnswers']"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX1",
-				"target": "randomQuestionsX1",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX1",
-				"target": "sequentalQuestionsX2",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX2",
-				"target": "sequentalQuestionsX1",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_неверных_ответов > 3"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX2",
-				"target": "randomQuestionsX2",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
-                    }
-				}
-			}
-		]
-	}
+        }
+      },
+      "question1": {
+        "label": "Первый вопрос",
+        "metadata": {
+        "nodeData": {
+            "text": "Исследуя это место, вы находите ещё один источник радиосигнала, в котором говориться, что это место — хранилище, в котором находятся знания и единственный способ сюда попасть, собрать ключ. Ключ состоит из 10 осколков, которые вы можете добыть в подземелье на другой стороне планеты. Внезапно сигнал прервался. Ты можешь 'вернуться на базу' или 'отправиться на поиски подземелья'.",
+            "type":"continueBlock"
+            }
+        }
+      },
+      "question2": {
+        "metadata": {
+        "nodeData": {
+        "text": "Вы отправились в поиски подземелья. Спустя некоторое время вы начинаете замечать светящееся пространство где-то вдалеке. Подойдя ближе, вы замечаете почти ничем не примечательным вход в подземелье, если бы не странное излучение, исходящее из него.",
+        "type":"continueBlock"
+        }
+        }
+      },
+      "question3": {
+        "metadata": {
+        "nodeData": {
+            "text": "Осторожно ступая, вы начинаете спускаться в подземелье. Осматриваясь вокруг, ты вдруг замечаешь какой-то светящийся текст.  Подойдя поближе, ты понимаешь, что это описание того, что ждёт тебя в процессе исследования этого подземелья. 'Привет, искатель! Если ты нашёл это место, ты поистине великий последователь. В этом подземелье тебе предстоит погрузиться в изучение *таблицы умножения*. Награда, за прохождение каждого этапа — осколок ключа. Если ты нашёл это место, то знаешь, что, получив все осколки, ты сможешь собрать ключ, который откроет вход в хранилище.' Только ты дочитал эту надпись, как стена позади тебя, начала двигаться вверх, освобождая проход вглубь подземелья. Ты спускаешься в какое-то тёмное помещение. Единственное, что ты видишь, это святящаяся цифра «2» на полу. Ты невольно встаёшь на эту цифру, как вдруг ты слышишь чей-то голос, который говорит тебе:\n — Привет, искатель! Меня зовут Elizabeth Alexandra Mary и я самый первый искатель, который отправился в поиск всевозможных знаний. После того, как я исследовала множество планет, я оставила на каждой из них подсказки, с помощью которых тебе будет легче открыть хранилище.\n— Все испытания будут состоять из вопросов об умножении чисел. Если ты правильно ответишь на все вопросы, ты получишь осколок ключа и можешь перейти к следующему этапу. Если в процессе ты не знаешь или не понимаешь, какой ответ должен быть, ничего страшного, попробуй ещё раз. Испытание начинается. 3... 2... 1... Поехали.",
+            "type":"continueBlock"
+            }
+        }
+      },
+      "sequentalQuestionsX2": {
+        "metadata": {
+          "nodeData": {
+            "text": "Начинается наша история в подземелье...",
+            "type": "вопросы_по_порядку",
+            "questionGroup": "groupX2"
+          }
+        }
+      },
+      "randomQuestionsX2": {
+        "metadata": {
+          "nodeData": {
+            "text": "Ты продвинулся на новый этап, теперь вопросы идут в случайном порядке. Попробуй-ка это...",
+            "type": "вопросы_в_случайном_порядке",
+            "questionGroup": "groupX2"
+          }
+        }
+      },
+      "randomQuestionsX2_task": {
+        "metadata": {
+          "nodeData": {
+            "text": "На тебя спустился паук и начал плести что-то из своей паутины на песке подземелья. Ты не можешь пройти мимо него, пока не разгадаешь все его загадки.",
+            "type": "вопросы_в_случайном_порядке",
+            "questionGroup": "groupX2_task"
+          }
+        }
+      },
+      "sequentalQuestionsX3": {
+        "metadata": {
+          "nodeData": {
+            "text": "Так держать! Я вижу, что ты полностью изучил этот этап. Этот осколок — твой. Ты его заслужил! «картинка ключа»\nКак только ты услышал эти слова, ты начинаешь замечать слабое свечение недалеко от себя. Подойдя ближе, ты понимаешь, что это открывшийся сундук, на дне которого лежит странный осколок артефакта. Забрав его, цифра на полу становится другой. Теперь это «3».",
+            "type": "вопросы_по_порядку",
+            "questionGroup": "groupX3"
+          }
+        }
+      },
+      "randomQuestionsX3": {
+        "metadata": {
+          "nodeData": {
+            "text": "Ты продвинулся на новый этап внутри 2...",
+            "type": "вопросы_в_случайном_порядке",
+            "questionGroup": "groupX3"
+          }
+        }
+      },
+      "goodBye": {
+        "label": "Досвидос"
+      },
+      "correct": {
+        "label": "Ответ верный"
+      },
+      "incorrect": {
+        "label": "Ответ неверный"
+      }
+    },
+    "edges": [
+      {
+        "source": "prolog",
+        "target": "question1",
+        "metadata": {
+          "transitionData": {
+            "canGo": "true"
+          }
+        }
+      },
+      {
+        "source": "question1",
+        "target": "welcomeNode",
+        "metadata": {
+          "transitionData": {
+            "equals": "вернуться на базу"
+          }
+        }
+      },
+      {
+        "source": "question1",
+        "target": "question2",
+        "metadata": {
+          "transitionData": {
+            "equals": "отправиться на поиски подземелья"
+          }
+        }
+      },
+      {
+        "source": "question2",
+        "target": "welcomeNode",
+        "metadata": {
+          "transitionData": {
+            "equals": "вернуться на базу"
+          }
+        }
+      },
+      {
+        "source": "question2",
+        "target": "question3",
+        "metadata": {
+          "transitionData": {
+            "equals": "Войти в подземлье"
+          }
+        }
+      },
+      {
+        "source": "question3",
+        "target": "sequentalQuestionsX2",
+        "metadata": {
+          "transitionData": {
+            "equals": "Поехали"
+          }
+        }
+      },
+      {
+        "source": "question3",
+        "target": "welcomeNode",
+        "metadata": {
+          "transitionData": {
+            "equals": "вернуться на базу"
+          }
+        }
+      },
+      {
+        "source": "welcomeNode",
+        "target": "goodBye",
+        "metadata": {
+          "transitionData": {
+            "equals": "выход"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX2",
+        "target": "goodBye",
+        "metadata": {
+          "transitionData": {
+            "equals": "выйти"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX2",
+        "target": "randomQuestionsX2",
+        "metadata": {
+          "transitionData": {
+            "canGo": "allAnswersInGroupAreCorrect"
+          }
+        }
+      },
+      {
+        "source": "randomQuestionsX2",
+        "target": "sequentalQuestionsX2",
+        "metadata": {
+          "transitionData": {
+            "canGo": "serialIncorrectAnswers3"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX2",
+        "target": "sequentalQuestionsX1",
+        "metadata": {
+          "transitionData": {
+            "canGo": "serialIncorrectAnswers3"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX2",
+        "target": "randomQuestionsX2",
+        "metadata": {
+          "transitionData": {
+            "canGo": "allAnswersInGroupAreCorrect"
+          }
+        }
+      },
+      {
+        "source": "randomQuestionsX2",
+        "target": "randomQuestionsX2_task",
+        "metadata": {
+          "transitionData": {
+            "canGo": "allAnswersInGroupAreCorrect"
+          }
+        }
+      }
+    ]
+  }
 }
