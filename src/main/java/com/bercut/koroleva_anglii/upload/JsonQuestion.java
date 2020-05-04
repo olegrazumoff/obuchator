@@ -1,6 +1,6 @@
 package com.bercut.koroleva_anglii.upload;
 
-public class Question {
+public class JsonQuestion {
     private String text;
     private String answer;
     private int points;

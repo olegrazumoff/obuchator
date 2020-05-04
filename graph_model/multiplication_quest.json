@@ -257,7 +257,10 @@
       "welcomeNode": {
         "label": "Приветствие",
         "metadata": {
-          "text": "Привет, дружок, хочешь я расскажу тебе сказку про цифры?"
+          "nodeData": {
+            "text": "Начинается наша история в подземелье номер 1...",
+            "type": "инфо"
+          }
         }
       },
       "sequentalQuestionsX1": {
@@ -299,43 +302,15 @@
             "questionGroup": "groupX2"
           }
         }
-      },
-      "goodBye": {
-        "label": "Досвидос"
-      },
-      "correct": {
-        "label": "Ответ верный"
-      },
-      "incorrect": {
-        "label": "Ответ неверный"
       }
     },
     "edges": [
       {
         "source": "welcomeNode",
-        "target": "goodBye",
+        "target": "sequentalQuestionsX1",
         "metadata": {
           "transitionProperties": {
-            "canGo": "ответ=$textGroups['exitAnswers']"
-          }
-        }
-      },
-      {
-        "source": "welcomeNode",
-        "target": "sequentalQuestions",
-        "metadata": {
-          "transitionProperties": {
-            "canGo": "ответ=$textGroups['contitueAnswers']",
-            "questionGroup": "groupX1"
-          }
-        }
-      },
-      {
-        "source": "sequentalQuestionsX1",
-        "target": "goodBye",
-        "metadata": {
-          "transitionProperties": {
-            "canGo": "ответ=$textGroups['exitAnswers']"
+            "equals": "да"
           }
         }
       },
@@ -344,7 +319,7 @@
         "target": "randomQuestionsX1",
         "metadata": {
           "transitionProperties": {
-            "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
+            "canGo": "success"
           }
         }
       },
@@ -353,7 +328,7 @@
         "target": "sequentalQuestionsX2",
         "metadata": {
           "transitionProperties": {
-            "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
+            "canGo": "success"
           }
         }
       },
@@ -362,7 +337,7 @@
         "target": "sequentalQuestionsX1",
         "metadata": {
           "transitionProperties": {
-            "canGo": "$серия_неверных_ответов > 3"
+            "canGo": "success"
           }
         }
       },
@@ -371,7 +346,7 @@
         "target": "randomQuestionsX2",
         "metadata": {
           "transitionProperties": {
-            "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
+            "canGo": "success"
           }
         }
       }

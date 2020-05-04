@@ -1,5 +1,5 @@
 package com.bercut.koroleva_anglii.progress;
 
 public enum  MessageType {
-    FIRST, WELCOME, TRANSITION, STEP
+    FIRST, INFO, START, TRANSITION, STEP
 }

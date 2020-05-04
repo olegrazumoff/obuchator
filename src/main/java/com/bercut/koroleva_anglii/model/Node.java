@@ -1,14 +1,17 @@
 package com.bercut.koroleva_anglii.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Node {
-    private List<Transition> transitions;
-    private StepChooser stepChooser;
+    private String id;
+    private List<Transition> transitions = new LinkedList<>();
+    private BlockType stepChooser;
     private String welcomeMessage;
     private Group group;
 
-    public Node(String welcomeMessage, StepChooser stepChooser) {
+    public Node(String id, String welcomeMessage, BlockType stepChooser) {
+        this.id = id;
         this.stepChooser = stepChooser;
         this.welcomeMessage = welcomeMessage;
     }
@@ -21,7 +24,7 @@ public class Node {
         return transitions;
     }
 
-    public StepChooser getStepChooser() {
+    public BlockType getBlockType() {
         return stepChooser;
     }
 
@@ -52,6 +55,15 @@ public class Node {
     public Transition getTransition(Group group, List<Answer> currentAnswers) {
         for (Transition transition : transitions) {
             if (transition.handle(group, currentAnswers)) {
+                return transition;
+            }
+        }
+        return null;
+    }
+
+    public Transition getTransition(String message) {
+        for (Transition transition : transitions) {
+            if (transition.handle(message)) {
                 return transition;
             }
         }

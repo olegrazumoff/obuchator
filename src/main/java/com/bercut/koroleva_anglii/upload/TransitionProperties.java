@@ -2,6 +2,7 @@ package com.bercut.koroleva_anglii.upload;
 
 public class TransitionProperties {
     private String canGo;
+    private String equals;
 
     public String getCanGo() {
         return canGo;
@@ -9,5 +10,13 @@ public class TransitionProperties {
 
     public void setCanGo(String canGo) {
         this.canGo = canGo;
+    }
+
+    public String getEquals() {
+        return equals;
+    }
+
+    public void setEquals(String equals) {
+        this.equals = equals;
     }
 }

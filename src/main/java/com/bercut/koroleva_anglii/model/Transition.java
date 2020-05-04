@@ -21,6 +21,10 @@ public class Transition {
         return callback.handle(group, currentAnswers);
     }
 
+    public boolean handle(String message) {
+        return callback.handle(message);
+    }
+
     public String getMessage() {
         return block.getWelcomeMessage();
     }

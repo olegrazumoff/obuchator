@@ -5,7 +5,7 @@ import com.bercut.koroleva_anglii.model.*;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.bercut.koroleva_anglii.model.StepChooser.SEQUENTAL;
+import static com.bercut.koroleva_anglii.model.BlockType.SEQUENTAL;
 
 public class Progress {
 
@@ -25,10 +25,24 @@ public class Progress {
         switch (waitingMessageType) {
             case FIRST -> {
                 currentBlock = model.getBlock();
-                waitingMessageType = MessageType.WELCOME;
+                if (currentBlock.getBlockType() == BlockType.INFO) {
+                    waitingMessageType = MessageType.INFO;
+                } else {
+                    waitingMessageType = MessageType.START;
+                }
                 return currentBlock.getWelcomeMessage();
             }
-            case WELCOME -> {
+            case INFO -> {
+                Transition transition = currentBlock.getTransition(message);
+                if (transition != null) {
+                    currentAnswers.clear();
+                    waitingMessageType = MessageType.START;
+                    return transition.getMessage();
+                } else {
+                    return "Переход не найден";
+                }
+            }
+            case START -> {
                 currentStep = currentBlock.getNextStep(null);
                 waitingMessageType = MessageType.STEP;
                 return currentStep.getMessage();
@@ -43,11 +57,11 @@ public class Progress {
                 Transition transition = currentBlock.getTransition(currentBlock.getGroup(), currentAnswers);
                 if (transition != null) {
                     currentAnswers.clear();
-                    waitingMessageType = MessageType.WELCOME;
+                    waitingMessageType = MessageType.START;
                     return transition.getMessage();
                 } else {
                     waitingMessageType = MessageType.STEP;
-                    if (currentBlock.getStepChooser() == SEQUENTAL) {
+                    if (currentBlock.getBlockType() == SEQUENTAL) {
                         currentStep = currentBlock.getNextStep(currentStep);
                         if (currentStep == null) {
                             return "Не найден следующий шаг, но и условие перехода не сработало";
