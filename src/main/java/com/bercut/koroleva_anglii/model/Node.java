@@ -2,6 +2,7 @@ package com.bercut.koroleva_anglii.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class Node {
     private String id;
@@ -32,16 +33,32 @@ public class Node {
         return welcomeMessage;
     }
 
+    private Random random = new Random();
+
     public Step getNextStep(Step currentStep) {
-        if (currentStep != null) {
-            int nextIndex = group.getSteps().indexOf(currentStep) + 1;
-            if (nextIndex > group.getSteps().size() - 1) {
-                return null;
+        if (getBlockType() == BlockType.SEQUENTAL) {
+            if (currentStep != null) {
+                int nextIndex = group.getSteps().indexOf(currentStep) + 1;
+                if (nextIndex > group.getSteps().size() - 1) {
+                    return null;
+                }
+                return group.getSteps().get(nextIndex);
+            } else {
+                return group.getSteps().get(0);
             }
-            return group.getSteps().get(nextIndex);
-        } else {
-            return group.getSteps().get(0);
+        } else if (getBlockType() == BlockType.RANDOM) {
+            if (currentStep != null) {
+                int currIndex = group.getSteps().indexOf(currentStep);
+                int nextIndex = random.nextInt(group.getSteps().size());
+                while (nextIndex == currIndex) {
+                    nextIndex = random.nextInt(group.getSteps().size());
+                }
+                return group.getSteps().get(nextIndex);
+            } else {
+                return group.getSteps().get(0);
+            }
         }
+        return null;
     }
 
     public void setTransitions(List<Transition> transitions) {

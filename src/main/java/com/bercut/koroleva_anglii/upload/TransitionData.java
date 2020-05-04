@@ -1,6 +1,6 @@
 package com.bercut.koroleva_anglii.upload;
 
-public class TransitionProperties {
+public class TransitionData {
     private String canGo;
     private String equals;
 

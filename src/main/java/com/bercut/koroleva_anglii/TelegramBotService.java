@@ -56,7 +56,10 @@ public class TelegramBotService {
                         } else {
                             text = text.replace(BOT_LOGIN, "").trim();
                             String answer = modelExecutor.handleMessage(update.message().from().username(), text);
-                            sendMessage(update.message().chat().id(), answer);
+                            String[] splittedAnswer = answer.split("\n");
+                            for(String answ : splittedAnswer) {
+                                sendMessage(update.message().chat().id(), answ);
+                            }
                         }
                     //}
                 //}

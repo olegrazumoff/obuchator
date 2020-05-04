@@ -5,6 +5,7 @@ import com.bercut.koroleva_anglii.model.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.bercut.koroleva_anglii.model.BlockType.RANDOM;
 import static com.bercut.koroleva_anglii.model.BlockType.SEQUENTAL;
 
 public class Progress {
@@ -35,9 +36,15 @@ public class Progress {
             case INFO -> {
                 Transition transition = currentBlock.getTransition(message);
                 if (transition != null) {
-                    currentAnswers.clear();
-                    waitingMessageType = MessageType.START;
-                    return transition.getMessage();
+                    currentBlock = transition.getBlock();
+                    if (currentBlock.getBlockType() == BlockType.INFO) {
+                        waitingMessageType = MessageType.INFO;
+                        return currentBlock.getWelcomeMessage();
+                    } else {
+                        currentStep = currentBlock.getNextStep(null);
+                        waitingMessageType = MessageType.STEP;
+                        return currentBlock.getWelcomeMessage() + "\n" + currentStep.getMessage();
+                    }
                 } else {
                     return "Переход не найден";
                 }
@@ -53,21 +60,27 @@ public class Progress {
                     waitingMessageType = MessageType.STEP;
                     return "Неопознанный ответ";
                 }
+                String resultMessage = answer.getAnswerType() == AnswerType.GOOD ? "верно" : "не верно";
                 currentAnswers.add(answer);
                 Transition transition = currentBlock.getTransition(currentBlock.getGroup(), currentAnswers);
                 if (transition != null) {
                     currentAnswers.clear();
-                    waitingMessageType = MessageType.START;
-                    return transition.getMessage();
+                    currentBlock = transition.getBlock();
+                    if (currentBlock.getBlockType() == BlockType.INFO) {
+                        waitingMessageType = MessageType.INFO;
+                        return currentBlock.getWelcomeMessage();
+                    } else {
+                        currentStep = currentBlock.getNextStep(null);
+                        waitingMessageType = MessageType.STEP;
+                        return resultMessage + "\n" + currentBlock.getWelcomeMessage() + "\n" + currentStep.getMessage();
+                    }
                 } else {
                     waitingMessageType = MessageType.STEP;
-                    if (currentBlock.getBlockType() == SEQUENTAL) {
-                        currentStep = currentBlock.getNextStep(currentStep);
-                        if (currentStep == null) {
-                            return "Не найден следующий шаг, но и условие перехода не сработало";
-                        }
-                        return currentStep.getMessage();
+                    currentStep = currentBlock.getNextStep(currentStep);
+                    if (currentStep == null) {
+                        return "Не найден следующий шаг, но и условие перехода не сработало";
                     }
+                    return resultMessage + "\n" + currentStep.getMessage();
                 }
             }
             case TRANSITION -> {

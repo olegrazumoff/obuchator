@@ -18,6 +18,10 @@ public class ModelExecutor {
 
     public String handleMessage(String userId, String message) {
         Progress progress = progressMap.get(userId);
+        if(message.equalsIgnoreCase("reset")) {
+            progress = new Progress(model);
+            progressMap.put(userId, progress);
+        }
         if (progress == null) {
             progress = new Progress(model);
             progressMap.put(userId, progress);

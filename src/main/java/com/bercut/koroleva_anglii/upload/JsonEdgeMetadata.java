@@ -1,13 +1,13 @@
 package com.bercut.koroleva_anglii.upload;
 
 public class JsonEdgeMetadata {
-    private TransitionProperties transitionProperties;
+    private TransitionData transitionData;
 
-    public TransitionProperties getTransitionProperties() {
-        return transitionProperties;
+    public TransitionData getTransitionData() {
+        return transitionData;
     }
 
-    public void setTransitionProperties(TransitionProperties transitionProperties) {
-        this.transitionProperties = transitionProperties;
+    public void setTransitionData(TransitionData transitionData) {
+        this.transitionData = transitionData;
     }
 }

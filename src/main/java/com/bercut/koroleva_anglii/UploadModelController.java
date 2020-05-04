@@ -49,6 +49,7 @@ public class UploadModelController {
                 answers.add(new Answer(GOOD, message -> jsonQuestion.getAnswer().equalsIgnoreCase(message)));
                 answers.add(new Answer(BAD, message -> true));
                 step.setAnswers(answers);
+                steps.add(step);
             }
             group.setSteps(steps);
             groups.put(questionGroupEntry.getKey(), group);
@@ -66,10 +67,10 @@ public class UploadModelController {
         for (JsonEdge jsonEdge : jsonModel.getGraph().getEdges()) {
             Node source = nodes.get(jsonEdge.getSource());
             Node target = nodes.get(jsonEdge.getTarget());
-            if (jsonEdge.getMetadata().getTransitionProperties().getCanGo() != null) {
+            if (jsonEdge.getMetadata().getTransitionData().getCanGo() != null) {
                 source.getTransitions().add(new Transition(target,
-                        transitionCallbackMap.get(jsonEdge.getMetadata().getTransitionProperties().getCanGo())));
-            } else if (jsonEdge.getMetadata().getTransitionProperties().getEquals() != null) {
+                        transitionCallbackMap.get(jsonEdge.getMetadata().getTransitionData().getCanGo())));
+            } else if (jsonEdge.getMetadata().getTransitionData().getEquals() != null) {
                 source.getTransitions().add(new Transition(target, new TransitionCallback() {
                     @Override
                     public boolean handle(Group group, List<Answer> message) {
@@ -78,7 +79,7 @@ public class UploadModelController {
 
                     @Override
                     public boolean handle(String message) {
-                        return jsonEdge.getMetadata().getTransitionProperties().getEquals().contains(message);
+                        return jsonEdge.getMetadata().getTransitionData().getEquals().contains(message);
                     }
                 }));
             }
@@ -113,7 +114,7 @@ public class UploadModelController {
                 if (answer.getAnswerType() == BAD) {
                     badCounter++;
                 } else if (answer.getAnswerType() == GOOD) {
-                    badCounter++;
+                    badCounter = 0;
                 }
             }
             return badCounter >= 3;
@@ -134,58 +135,7 @@ public class UploadModelController {
 
 
     @PostConstruct
-    private void init() {
-        Group group1 = newGroup(Arrays.asList("1", "2"));
-        Group group2 = newGroup(Arrays.asList("пять", "шесть"));
-
-        Node block1 = newNode("1");
-        Node block2 = newNode("2");
-        Node block3 = newNode("3");
-
-        block1.setGroup(group1);
-        block2.setGroup(group2);
-        block3.setGroup(group2);
-
-
-        List<Transition> transitions1 = new LinkedList<>();
-        transitions1.add(new Transition(block2, allAnswersSuccess));
-        transitions1.add(new Transition(block3, allAnswersSuccess));
-        block1.setTransitions(transitions1);
-
-        List<Transition> transitions2 = new LinkedList<>();
-        transitions2.add(new Transition(block1, allAnswersSuccess));
-        transitions2.add(new Transition(block3, allAnswersSuccess));
-        block2.setTransitions(transitions2);
-
-        List<Transition> transitions3 = new LinkedList<>();
-        transitions3.add(new Transition(block1, allAnswersSuccess));
-        transitions3.add(new Transition(block2, allAnswersSuccess));
-        block3.setTransitions(transitions3);
-
-        Model model = new Model(block1);
-        modelExecutor.setModel(model);
-    }
-
-    private Group newGroup(List<String> answers) {
-        List<Step> steps = new LinkedList<>();
-        for (String answer : answers) {
-            steps.add(newStep(String.format("Вопрос, напиши ответ '%s'?", answer), answer));
-        }
-        Group group = new Group();
-        group.setSteps(steps);
-        return group;
-    }
-
-    private Node newNode(String name) {
-        return new Node(name, String.format("Вход в блок %s, ты готов?", name), BlockType.SEQUENTAL);
-    }
-
-    private Step newStep(String message, String answer) {
-        Step step = new Step(message);
-        List<Answer> answerHandlers = new LinkedList<>();
-        answerHandlers.add(new Answer(GOOD, answer::equals));
-        answerHandlers.add(new Answer(BAD, msg -> true));
-        step.setAnswers(answerHandlers);
-        return step;
+    private void init() throws IOException {
+        upload(null);
     }
 }
