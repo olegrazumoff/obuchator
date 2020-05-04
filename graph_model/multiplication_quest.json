@@ -1,223 +1,380 @@
 {
-	"graph": {
-		"id": "someId",
-		"type": "bot graph",
-		"label": "Курс таблицы умножения",
-		"metadata": {
-			"textGroups": [
-				{
-				"congrats": 
-                    [
-                        {"text":"молодечик"}
-                        ,{"text":"лови пятюню"}
-                        ,{"text":"класс"}
-                        ,{"text":"всё так"}
-                        ,{"text":"верно"}
-                    ]
-                }
-				,{"looser": 
-                    [
-                        {"text":"ну ты"}
-                        ,{"text":"давай думай"}
-                        ,{"text":"подумай ещё"}
-                        ,{"text":"неверно"}
-                        ,{"text":"неа"}
-                    ]
-				}
-				,{"exitAnswers": 
-                    [
-                        {"text":"хватит"}
-                        ,{"text":"выйти"}
-                        ,{"text":"закончить"}
-                        ,{"text":"завершить"}
-                        ,{"text":"выход"}
-                    ]
-				}
-				,{"continueAnswers": 
-                    [
-                        {"text":"продолжить"}
-                        ,{"text":"давай"}
-                        ,{"text":"да"}
-                        ,{"text":"войти"}
-                        ,{"text":"вход"}
-                    ]
-				}
-			],
-			"questionGroups": [
-				{
-                "groupX1": 
-                    [
-                        {"text":"1x2", "anwser":"2", "points":1}
-                        ,{"text":"1x3", "anwser":"3", "points":1}
-                        ,{"text":"1x4", "anwser":"4", "points":1}
-                        ,{"text":"1x5", "anwser":"5", "points":1}
-                        ,{"text":"1x6", "anwser":"6", "points":1}
-                        ,{"text":"1x7", "anwser":"7", "points":1}
-                        ,{"text":"1x8", "anwser":"8", "points":1}
-                        ,{"text":"1x9", "anwser":"9", "points":1}
-                        ,{"text":"1x10", "anwser":"10", "points":1}
-                    ]
-                }
-				,{"groupX2": 
-                    [
-                        {"text":"дважды два", "anwser":"4", "points":1}
-                        ,{"text":"2x3", "anwser":"6", "points":1}
-                        ,{"text":"2x4", "anwser":"8", "points":1}
-                        ,{"text":"2x5", "anwser":"10", "points":1}
-                        ,{"text":"2x6", "anwser":"12", "points":2}
-                        ,{"text":"2x7", "anwser":"14", "points":2}
-                        ,{"text":"2x8", "anwser":"16", "points":2}
-                        ,{"text":"2x9", "anwser":"18", "points":2}
-                        ,{"text":"2x10", "anwser":"20", "points":1}
-                    ]
-                }
-                ,{"groupX2_task": 
-                    [
-                        {"text":"2x что-то = 4", "anwser":"2", "points":1}
-                        ,{"text":"2x что-то = 6", "anwser":"3", "points":4}
-                        ,{"text":"2x что-то = 12", "anwser":"6", "points":4}
-                        ,{"text":"2x что-то = 14", "anwser":"7", "points":4}
-                        ,{"text":"2x что-то = 18", "anwser":"9", "points":4}
-                    ]
-                }
-				,{"groupX3": 
-                    [
-                        {"text":"трижды два", "anwser":"6|примерно шесть", "points":1}
-                        ,{"text":"3x3", "anwser":"9", "points":2}
-                        ,{"text":"3x4", "anwser":"12", "points":2}
-                        ,{"text":"3x5", "anwser":"15", "points":2}
-                        ,{"text":"3x6", "anwser":"18", "points":2}
-                        ,{"text":"3x7", "anwser":"21", "points":2}
-                        ,{"text":"3x8", "anwser":"24", "points":2}
-                        ,{"text":"3x9", "anwser":"27", "points":2}
-                        ,{"text":"3x10", "anwser":"30", "points":2}
-                    ]
-				}
-			]
-		}
-		,"nodes": {
-			"welcomeNode": {
-				"label": "Приветствие",
-				"metadata": {
-					"text": "Привет, дружок, хочешь я расскажу тебе сказку про цифры?",
-				}
-			},
-			"sequentalQuestionsX1": {
-				"label": "Последовательные вопросы X1",
-				"metadata": {
-                    "nodeData": {
-                        "text": "Начинается наша история в подземелье номер 1...",
-                        "type": "вопросы_по_порядку",
-                        "questionGroup": "groupX1"
-                    }
-				}
-			},
-			"randomQuestionsX1": {
-				"label": "Рандомные вопросы X1"
-                "metadata": {
-                    "nodeData": {
-                        "text": "Ты продвинулся на новый этап...",
-                        "type": "вопросы_в_случайном_порядке",
-                        "questionGroup": "groupX1"
-                    }
-				}
-			},
-			"sequentalQuestionsX2": {
-				"label": "Последовательные вопросы X1",
-				"metadata": {
-                    "nodeData": {
-                        "text": "Спускаемся в подземелье 2...",
-                        "type": "вопросы_по_порядку",
-                        "questionGroup": "groupX2"
-                    }
-				}
-			},
-			"randomQuestionsX1": {
-				"label": "Рандомные вопросы X1"
-                "metadata": {
-                    "nodeData": {
-                        "text": "Ты продвинулся на новый этап внутри 2...",
-                        "type": "вопросы_в_случайном_порядке",
-                        "questionGroup": "groupX2"
-                    }
-				}
-			},
-			"goodBye": {
-				"label": "Досвидос"
-			},
-			"correct": {
-				"label": "Ответ верный"
-			},
-			"incorrect": {
-				"label": "Ответ неверный"
-			}                    
-		},
-		"edges": 
-        [
-			{
-				"source": "welcomeNode",
-				"target": "goodBye",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "ответ=$textGroups['exitAnswers']"
-                    }
-				}
-			}
-			,{
-				"source": "welcomeNode",
-				"target": "sequentalQuestions",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "ответ=$textGroups['contitueAnswers']"
-                        ,"questionGroup": "groupX1"
-                    }
-				}
-			}
-			,{
-				"source": "sequentalQuestionsX1",
-				"target": "goodBye",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "ответ=$textGroups['exitAnswers']"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX1",
-				"target": "randomQuestionsX1",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX1",
-				"target": "sequentalQuestionsX2",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX2",
-				"target": "sequentalQuestionsX1",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_неверных_ответов > 3"
-                    }
-				}
-			}
-            ,{
-				"source": "sequentalQuestionsX2",
-				"target": "randomQuestionsX2",
-				"metadata": {
-                    "transitionProperties": {
-                        "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
-                    }
-				}
-			}
-		]
-	}
+  "graph": {
+    "id": "someId",
+    "type": "bot graph",
+    "label": "Курс таблицы умножения",
+    "metadata": {
+      "textGroups": [
+        {
+          "congrats": [
+            {
+              "text": "молодечик"
+            },
+            {
+              "text": "лови пятюню"
+            },
+            {
+              "text": "класс"
+            },
+            {
+              "text": "всё так"
+            },
+            {
+              "text": "верно"
+            }
+          ]
+        },
+        {
+          "looser": [
+            {
+              "text": "ну ты"
+            },
+            {
+              "text": "давай думай"
+            },
+            {
+              "text": "подумай ещё"
+            },
+            {
+              "text": "неверно"
+            },
+            {
+              "text": "неа"
+            }
+          ]
+        },
+        {
+          "exitAnswers": [
+            {
+              "text": "хватит"
+            },
+            {
+              "text": "выйти"
+            },
+            {
+              "text": "закончить"
+            },
+            {
+              "text": "завершить"
+            },
+            {
+              "text": "выход"
+            }
+          ]
+        },
+        {
+          "continueAnswers": [
+            {
+              "text": "продолжить"
+            },
+            {
+              "text": "давай"
+            },
+            {
+              "text": "да"
+            },
+            {
+              "text": "войти"
+            },
+            {
+              "text": "вход"
+            }
+          ]
+        }
+      ],
+      "questionGroups": {
+        "groupX1": [
+          {
+            "text": "1x2",
+            "answer": "2",
+            "points": 1
+          },
+          {
+            "text": "1x3",
+            "answer": "3",
+            "points": 1
+          },
+          {
+            "text": "1x4",
+            "answer": "4",
+            "points": 1
+          },
+          {
+            "text": "1x5",
+            "answer": "5",
+            "points": 1
+          },
+          {
+            "text": "1x6",
+            "answer": "6",
+            "points": 1
+          },
+          {
+            "text": "1x7",
+            "answer": "7",
+            "points": 1
+          },
+          {
+            "text": "1x8",
+            "answer": "8",
+            "points": 1
+          },
+          {
+            "text": "1x9",
+            "answer": "9",
+            "points": 1
+          },
+          {
+            "text": "1x10",
+            "answer": "10",
+            "points": 1
+          }
+        ],
+        "groupX2": [
+          {
+            "text": "дважды два",
+            "answer": "4",
+            "points": 1
+          },
+          {
+            "text": "2x3",
+            "answer": "6",
+            "points": 1
+          },
+          {
+            "text": "2x4",
+            "answer": "8",
+            "points": 1
+          },
+          {
+            "text": "2x5",
+            "answer": "10",
+            "points": 1
+          },
+          {
+            "text": "2x6",
+            "answer": "12",
+            "points": 2
+          },
+          {
+            "text": "2x7",
+            "answer": "14",
+            "points": 2
+          },
+          {
+            "text": "2x8",
+            "answer": "16",
+            "points": 2
+          },
+          {
+            "text": "2x9",
+            "answer": "18",
+            "points": 2
+          },
+          {
+            "text": "2x10",
+            "answer": "20",
+            "points": 1
+          }
+        ],
+        "groupX2_task": [
+          {
+            "text": "2x что-то = 4",
+            "answer": "2",
+            "points": 1
+          },
+          {
+            "text": "2x что-то = 6",
+            "answer": "3",
+            "points": 4
+          },
+          {
+            "text": "2x что-то = 12",
+            "answer": "6",
+            "points": 4
+          },
+          {
+            "text": "2x что-то = 14",
+            "answer": "7",
+            "points": 4
+          },
+          {
+            "text": "2x что-то = 18",
+            "answer": "9",
+            "points": 4
+          }
+        ],
+        "groupX3": [
+          {
+            "text": "трижды два",
+            "answer": "6|примерно шесть",
+            "points": 1
+          },
+          {
+            "text": "3x3",
+            "answer": "9",
+            "points": 2
+          },
+          {
+            "text": "3x4",
+            "answer": "12",
+            "points": 2
+          },
+          {
+            "text": "3x5",
+            "answer": "15",
+            "points": 2
+          },
+          {
+            "text": "3x6",
+            "answer": "18",
+            "points": 2
+          },
+          {
+            "text": "3x7",
+            "answer": "21",
+            "points": 2
+          },
+          {
+            "text": "3x8",
+            "answer": "24",
+            "points": 2
+          },
+          {
+            "text": "3x9",
+            "answer": "27",
+            "points": 2
+          },
+          {
+            "text": "3x10",
+            "answer": "30",
+            "points": 2
+          }
+        ]
+      }
+    },
+    "nodes": {
+      "welcomeNode": {
+        "label": "Приветствие",
+        "metadata": {
+          "text": "Привет, дружок, хочешь я расскажу тебе сказку про цифры?"
+        }
+      },
+      "sequentalQuestionsX1": {
+        "label": "Последовательные вопросы X1",
+        "metadata": {
+          "nodeData": {
+            "text": "Начинается наша история в подземелье номер 1...",
+            "type": "вопросы_по_порядку",
+            "questionGroup": "groupX1"
+          }
+        }
+      },
+      "randomQuestionsX1": {
+        "label": "Рандомные вопросы X1",
+        "metadata": {
+          "nodeData": {
+            "text": "Ты продвинулся на новый этап...",
+            "type": "вопросы_в_случайном_порядке",
+            "questionGroup": "groupX1"
+          }
+        }
+      },
+      "sequentalQuestionsX2": {
+        "label": "Последовательные вопросы X1",
+        "metadata": {
+          "nodeData": {
+            "text": "Спускаемся в подземелье 2...",
+            "type": "вопросы_по_порядку",
+            "questionGroup": "groupX2"
+          }
+        }
+      },
+      "randomQuestionsX2": {
+        "label": "Рандомные вопросы X1",
+        "metadata": {
+          "nodeData": {
+            "text": "Ты продвинулся на новый этап внутри 2...",
+            "type": "вопросы_в_случайном_порядке",
+            "questionGroup": "groupX2"
+          }
+        }
+      },
+      "goodBye": {
+        "label": "Досвидос"
+      },
+      "correct": {
+        "label": "Ответ верный"
+      },
+      "incorrect": {
+        "label": "Ответ неверный"
+      }
+    },
+    "edges": [
+      {
+        "source": "welcomeNode",
+        "target": "goodBye",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "ответ=$textGroups['exitAnswers']"
+          }
+        }
+      },
+      {
+        "source": "welcomeNode",
+        "target": "sequentalQuestions",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "ответ=$textGroups['contitueAnswers']",
+            "questionGroup": "groupX1"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX1",
+        "target": "goodBye",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "ответ=$textGroups['exitAnswers']"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX1",
+        "target": "randomQuestionsX1",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX1",
+        "target": "sequentalQuestionsX2",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX2",
+        "target": "sequentalQuestionsX1",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "$серия_неверных_ответов > 3"
+          }
+        }
+      },
+      {
+        "source": "sequentalQuestionsX2",
+        "target": "randomQuestionsX2",
+        "metadata": {
+          "transitionProperties": {
+            "canGo": "$серия_правильных_ответов > 2 && $дано_ответов_в_рануде > 9"
+          }
+        }
+      }
+    ]
+  }
 }

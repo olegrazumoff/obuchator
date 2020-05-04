@@ -1,5 +1,6 @@
 package com.bercut.koroleva_anglii;
 
+import com.bercut.koroleva_anglii.progress.ModelExecutor;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.MessageEntity;
@@ -19,8 +20,8 @@ import java.util.List;
 public class TelegramBotService {
 
     private static final String BOT_TOKEN = "1110407913:AAFEMnRMRxpoyB3ZOXjcLEGeV0-CgacAuS4";
-    private static final String BOT_NAME = "@koroleva_anglii_bot";
-    private static final String BOT_LOGIN = "Королева Англии";
+    private static final String BOT_LOGIN = "@koroleva_anglii_bot";
+    private static final String BOT_NAME = "Королева Англии";
 
     private TelegramBot telegramBot;
     private GetUpdates getUpdates;
@@ -45,20 +46,20 @@ public class TelegramBotService {
         for (Update update : updates) {
             getUpdates.offset(update.updateId() + 1);
             if (update.message() != null) {
-                MessageEntity[] entities = update.message().entities();
-                if (entities != null && entities.length == 1 && entities[0].type() == MessageEntity.Type.mention) {
+                //MessageEntity[] entities = update.message().entities();
+                //if (entities != null && entities.length > 0 && entities[0].type() == MessageEntity.Type.mention) {
                     String text = update.message().text();
-                    if (text != null && text.contains(BOT_NAME)) {
-                        text = text.replace(BOT_LOGIN, BOT_NAME);
+                    //if (text != null && text.contains(BOT_LOGIN)) {
                         System.out.println(update.message().from().firstName() + ": " + text);
-                        if (update.message().text().equalsIgnoreCase("как дела?")) {
-                            sendMessage(update.message().chat().id(), "Какие дела?");
+                        if (update.message().text().contains("скажи")) {
+                            sendMessage(update.message().chat().id(), update.message().text());
                         } else {
+                            text = text.replace(BOT_LOGIN, "").trim();
                             String answer = modelExecutor.handleMessage(update.message().from().username(), text);
                             sendMessage(update.message().chat().id(), answer);
                         }
-                    }
-                }
+                    //}
+                //}
             }
         }
     }
